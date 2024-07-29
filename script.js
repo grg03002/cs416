@@ -280,7 +280,7 @@ function updateScatterPlot(containerId, data, region) {
     });
 }
 
-async function createTreemap(containerId, dataUrl, year = null) {
+async function createTreemap(containerId, dataUrl, year = 2023) {
   const data = await d3.csv(dataUrl);
   const years = [...new Set(data.map(d => d.year))].sort((a, b) => a - b);
   
@@ -393,11 +393,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const index = Array.from(sections).indexOf(entry.target);
-        if (index === 1) {
-          // Add any additional behavior if needed for the stacked bar chart section
-        } else if (index === 2) {
-          // Add any additional behavior if needed for the third chart section
-        }
       }
     });
   }, { threshold: 0.5 });
