@@ -3722,17 +3722,79 @@ World,Historical,EV sales,Cars,BEV,2023,Vehicles,9500000
 World,Historical,EV stock,Cars,FCEV,2023,Vehicles,66000
 World,Historical,EV sales,Cars,PHEV,2023,Vehicles,4300000
 World,Historical,EV stock,Cars,PHEV,2023,Vehicles,12000000
-World-2010,Historical,Electricity demand,Cars,EV,2010,GWh,440
-World-2011,Historical,Electricity demand,Cars,EV,2011,GWh,1600
-World-2012,Historical,Electricity demand,Cars,EV,2012,GWh,1800
-World-2013,Historical,Electricity demand,Cars,EV,2013,GWh,2600
-World-2014,Historical,Electricity demand,Cars,EV,2014,GWh,3400
-World-2015,Historical,Electricity demand,Cars,EV,2015,GWh,5700
-World-2016,Historical,Electricity demand,Cars,EV,2016,GWh,8400
-World-2017,Historical,Electricity demand,Cars,EV,2017,GWh,10000
-World-2018,Historical,Electricity demand,Cars,EV,2018,GWh,15000
-World-2019,Historical,Electricity demand,Cars,EV,2019,GWh,19000
-World-2020,Historical,Electricity demand,Cars,EV,2020,GWh,21000
-World-2021,Historical,Electricity demand,Cars,EV,2021,GWh,35000
-World-2022,Historical,Electricity demand,Cars,EV,2022,GWh,44000
-World-2023,Historical,Electricity demand,Cars,EV,2023,GWh,97000
+World,Historical,Electricity demand,Cars,EV,2010,GWh,440
+World,Historical,Electricity demand,Cars,EV,2011,GWh,1600
+World,Historical,Electricity demand,Cars,EV,2012,GWh,1800
+World,Historical,Electricity demand,Cars,EV,2013,GWh,2600
+World,Historical,Electricity demand,Cars,EV,2014,GWh,3400
+World,Historical,Electricity demand,Cars,EV,2015,GWh,5700
+World,Historical,Electricity demand,Cars,EV,2016,GWh,8400
+World,Historical,Electricity demand,Cars,EV,2017,GWh,10000
+World,Historical,Electricity demand,Cars,EV,2018,GWh,15000
+World,Historical,Electricity demand,Cars,EV,2019,GWh,19000
+World,Historical,Electricity demand,Cars,EV,2020,GWh,21000
+World,Historical,Electricity demand,Cars,EV,2021,GWh,35000
+World,Historical,Electricity demand,Cars,EV,2022,GWh,44000
+World,Historical,Electricity demand,Cars,EV,2023,GWh,97000
+USA,Historical,Electricity demand,Cars,EV,2010,GWh,96
+USA,Historical,Electricity demand,Cars,EV,2011,GWh,130
+USA,Historical,Electricity demand,Cars,EV,2012,GWh,310
+USA,Historical,Electricity demand,Cars,EV,2013,GWh,560
+USA,Historical,Electricity demand,Cars,EV,2014,GWh,840
+USA,Historical,Electricity demand,Cars,EV,2015,GWh,1900
+USA,Historical,Electricity demand,Cars,EV,2016,GWh,3500
+USA,Historical,Electricity demand,Cars,EV,2017,GWh,3700
+USA,Historical,Electricity demand,Cars,EV,2018,GWh,5000
+USA,Historical,Electricity demand,Cars,EV,2019,GWh,6300
+USA,Historical,Electricity demand,Cars,EV,2020,GWh,5400
+USA,Historical,Electricity demand,Cars,EV,2021,GWh,7000
+USA,Historical,Electricity demand,Cars,EV,2022,GWh,7200
+USA,Historical,Electricity demand,Cars,EV,2023,GWh,22000
+China,Historical,Electricity demand,Cars,EV,2010,GWh,46
+China,Historical,Electricity demand,Cars,EV,2011,GWh,120
+China,Historical,Electricity demand,Cars,EV,2012,GWh,230
+China,Historical,Electricity demand,Cars,EV,2013,GWh,470
+China,Historical,Electricity demand,Cars,EV,2014,GWh,660
+China,Historical,Electricity demand,Cars,EV,2015,GWh,1600
+China,Historical,Electricity demand,Cars,EV,2016,GWh,2400
+China,Historical,Electricity demand,Cars,EV,2017,GWh,3400
+China,Historical,Electricity demand,Cars,EV,2018,GWh,6200
+China,Historical,Electricity demand,Cars,EV,2019,GWh,8400
+China,Historical,Electricity demand,Cars,EV,2020,GWh,9600
+China,Historical,Electricity demand,Cars,EV,2021,GWh,18000
+China,Historical,Electricity demand,Cars,EV,2022,GWh,23000
+China,Historical,Electricity demand,Cars,EV,2023,GWh,38000
+Europe,Historical,Electricity demand,Cars,EV,2010,GWh,300
+Europe,Historical,Electricity demand,Cars,EV,2011,GWh,460
+Europe,Historical,Electricity demand,Cars,EV,2012,GWh,290
+Europe,Historical,Electricity demand,Cars,EV,2013,GWh,410
+Europe,Historical,Electricity demand,Cars,EV,2014,GWh,530
+Europe,Historical,Electricity demand,Cars,EV,2015,GWh,790
+Europe,Historical,Electricity demand,Cars,EV,2016,GWh,1100
+Europe,Historical,Electricity demand,Cars,EV,2017,GWh,1500
+Europe,Historical,Electricity demand,Cars,EV,2018,GWh,2100
+Europe,Historical,Electricity demand,Cars,EV,2019,GWh,3100
+Europe,Historical,Electricity demand,Cars,EV,2020,GWh,4600
+Europe,Historical,Electricity demand,Cars,EV,2021,GWh,7800
+Europe,Historical,Electricity demand,Cars,EV,2022,GWh,11000
+Europe,Historical,Electricity demand,Cars,EV,2023,GWh,29000
+India,Historical,Electricity demand,Cars,EV,2019,GWh,0.0038999998942017555
+India,Historical,Electricity demand,Cars,EV,2020,GWh,0.023000000044703484
+India,Historical,Electricity demand,Cars,EV,2021,GWh,0.05299999937415123
+India,Historical,Electricity demand,Cars,EV,2022,GWh,0.07400000095367432
+India,Historical,Electricity demand,Cars,EV,2023,GWh,410
+Rest of the world,Historical,Electricity demand,Cars,EV,2010,GWh,0.11999999731779099
+Rest of the world,Historical,Electricity demand,Cars,EV,2011,GWh,890
+Rest of the world,Historical,Electricity demand,Cars,EV,2012,GWh,980
+Rest of the world,Historical,Electricity demand,Cars,EV,2013,GWh,1100
+Rest of the world,Historical,Electricity demand,Cars,EV,2014,GWh,1400
+Rest of the world,Historical,Electricity demand,Cars,EV,2015,GWh,1400
+Rest of the world,Historical,Electricity demand,Cars,EV,2016,GWh,1400
+Rest of the world,Historical,Electricity demand,Cars,EV,2017,GWh,1400
+Rest of the world,Historical,Electricity demand,Cars,EV,2018,GWh,1400
+Rest of the world,Historical,Electricity demand,Cars,EV,2019,GWh,1700
+Rest of the world,Historical,Electricity demand,Cars,EV,2020,GWh,1700
+Rest of the world,Historical,Electricity demand,Cars,EV,2021,GWh,1900
+Rest of the world,Historical,Electricity demand,Cars,EV,2022,GWh,2000
+Rest of the world,Historical,Electricity demand,Cars,EV,2023,GWh,7900
+
