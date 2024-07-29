@@ -2,24 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Narrative Slideshow (EV and Energy)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Narrative Visualization Project - Electric Vehicles</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://d3js.org/d3.v6.min.js"></script>
 </head>
 <body>
-  <div class="section" id="section1">
-    <h1>US EV Supply and Demand</h1>
-    <div id="chart1" class="chart"></div>
-  </div>
-  <div class="section" id="section2">
-    <h1>Supply and Demand across the World as a share of all cars</h1>
-    <div id="chart2" class="chart"></div>
-  </div>
-  <div class="section" id="section3">
-    <h1>World Treemap of Electricity Demand per year</h1>
-    <div id="chart3" class="chart"></div>
-  </div>
-  <div id="tooltip" class="tooltip" style="opacity:0;"></div>
+  <div>Slideshow Visualization for EVs</div><br>
+  <div>CS 416</div><br>
+  <div>Glauco Grillo</div><br>
+  <div>EV Supply and Demand per region</div>
+  <div id="chart1" class="section"><div id="dropdowns" class="section"></div></div>
+  EV Supply and Demand
+  <div id="chart2" class="section"></div>
+  World Electricity Demand (GWh) per year
+  <div id="chart3" class="section"></div>
+  <div id="tooltip" class="tooltip" style="opacity: 0;"></div>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

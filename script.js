@@ -4,10 +4,8 @@ const margin = { top: 20, right: 70, bottom: 30, left: 60 };
 const barWidth = width - margin.left - margin.right;
 const barHeight = height - margin.top - margin.bottom;
 
-async function createScatterPlot(containerId, data, region = "USA") {
-  const filteredData = region 
-    ? data.filter(d => d.region === region)
-    : data;
+async function createScatterPlot(containerId, data, region) {
+  const filteredData = region ? data.filter(d => d.region === region) : data;
 
   const scatterData = d3.groups(filteredData, d => d.year).map(([year, values]) => {
     return {
@@ -222,28 +220,28 @@ function updateScatterPlot(containerId, data, region) {
       .attr("height", height)
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
-    } else {
+  } else {
     svg.selectAll("*").remove();
-    }
-    
-    const x = d3.scaleLinear()
+  }
+
+  const x = d3.scaleLinear()
     .domain([d3.min(scatterData, d => +d.year), d3.max(scatterData, d => +d.year)])
     .range([0, width - margin.left - margin.right]);
-    
-    const y = d3.scaleLinear()
+
+  const y = d3.scaleLinear()
     .domain([0, d3.max(scatterData, d => Math.max(d.supply, d.demand))])
     .range([height - margin.top - margin.bottom, 0]);
-    
-    svg.append("g")
+
+  svg.append("g")
     .attr("transform", `translate(0,${height - margin.top - margin.bottom})`)
     .call(d3.axisBottom(x).tickFormat(d3.format("d")));
-    
-    svg.append("g")
+
+  svg.append("g")
     .call(d3.axisLeft(y));
-    
-    const tooltip = d3.select("#tooltip");
-    
-    svg.selectAll(".dot-supply")
+
+  const tooltip = d3.select("#tooltip");
+
+  svg.selectAll(".dot-supply")
     .data(scatterData)
     .enter()
     .append("circle")
@@ -253,16 +251,16 @@ function updateScatterPlot(containerId, data, region) {
     .attr("r", 5)
     .style("fill", "blue")
     .on("mouseover", function(event, d) {
-    tooltip.transition().duration(200).style("opacity", 0.9);
-    tooltip.html("Year: ${d.year}<br>Supply: ${d.supply}")
-    .style("left", (event.pageX + 5) + "px")
-    .style("top", (event.pageY - 28) + "px");
+      tooltip.transition().duration(200).style("opacity", 0.9);
+      tooltip.html(`Year: ${d.year}<br>Supply: ${d.supply}`)
+        .style("left", (event.pageX + 5) + "px")
+        .style("top", (event.pageY - 28) + "px");
     })
     .on("mouseout", function() {
-    tooltip.transition().duration(500).style("opacity", 0);
+      tooltip.transition().duration(500).style("opacity", 0);
     });
-    
-    svg.selectAll(".dot-demand")
+
+  svg.selectAll(".dot-demand")
     .data(scatterData)
     .enter()
     .append("circle")
@@ -272,78 +270,107 @@ function updateScatterPlot(containerId, data, region) {
     .attr("r", 5)
     .style("fill", "red")
     .on("mouseover", function(event, d) {
-    tooltip.transition().duration(200).style("opacity", 0.9);
-    tooltip.html("Year: ${d.year}<br>Demand: ${d.demand}")
-    .style("left", (event.pageX + 5) + "px")
-    .style("top", (event.pageY - 28) + "px");
+      tooltip.transition().duration(200).style("opacity", 0.9);
+      tooltip.html(`Year: ${d.year}<br>Demand: ${d.demand}`)
+        .style("left", (event.pageX + 5) + "px")
+        .style("top", (event.pageY - 28) + "px");
     })
     .on("mouseout", function() {
-    tooltip.transition().duration(500).style("opacity", 0);
+      tooltip.transition().duration(500).style("opacity", 0);
     });
-    }
-    
-    async function createTreemap(containerId, dataUrl,year=null) {
-    const data = await d3.csv(dataUrl);
-    
-    const treemapData = d3.hierarchy({ values: data.filter(d => d.parameter === "Electricity demand") }, d => d.values)
-    .sum(d => +d.value)
-    .sort((a, b) => b.value - a.value);
-    
-    const treemapLayout = d3.treemap()
-    .size([width, height])
-    .padding(1);
-    
-    treemapLayout(treemapData);
-    
-    const svg = d3.select(containerId)
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height);
-    
-    const nodes = svg.selectAll("g")
-    .data(treemapData.leaves())
-    .enter()
-    .append("g")
-    .attr("transform", d => `translate(${d.x0},${d.y0})`)
-    ;
-    
-    nodes.append("rect")
-    .attr("width", d => d.x1 - d.x0)
-    .attr("height", d => d.y1 - d.y0)
-    .style("fill", "lightblue")
-    .style("stroke", "black");
-    
-    nodes.append("text")
-    .attr("x", 5)
-    .attr("y", 20)
-    .text(d => d.data.region)
-    .attr("font-size", "10px")
-    .attr("fill", "black");
-    }
+}
 
-    function updateTreeMap(year) {
-        const filteredData = treemapData.filter(d => d.year === year);
-    }
-    
-    document.addEventListener("DOMContentLoaded", async () => {
-    const data = await d3.csv("data/full_data.csv");
-    
-    const regions = [...new Set(data.map(d => d.region))].sort();
-    
-    const dropdownContainer = d3.select("#dropdowns").append("div").attr("class", "dropdown-container");
-    
-    dropdownContainer.append("label").text("Year: ");
-    dropdownContainer.append("select")
-    .attr("id", "yearDropdown")
+async function createTreemap(containerId, dataUrl, year = null) {
+  const data = await d3.csv(dataUrl);
+  const years = [...new Set(data.map(d => d.year))].sort((a, b) => a - b);
+  
+  const dropdownContainer = d3.select(containerId).append("div").attr("class", "dropdown-container");
+
+  dropdownContainer.append("label").text("Year: ");
+  const yearDropdown = dropdownContainer
+    .append("select")
+    .attr("id", "treemapYearDropdown")
     .selectAll("option")
-    .data([...new Set(data.map(d => d.year))].sort((a, b) => a - b))
+    .data(years)
     .enter()
     .append("option")
     .attr("value", d => d)
     .text(d => d);
+
+  function updateTreemap(selectedYear) {
+    const filteredData = data.filter(d => d.parameter === "Electricity demand" && d.year === selectedYear);
     
-    dropdownContainer.append("label").text("Region: ");
-    dropdownContainer.append("select")
+    const root = d3.hierarchy({ values: filteredData }, d => d.values)
+      .sum(d => +d.value)
+      .sort((a, b) => b.value - a.value);
+
+    const treemapLayout = d3.treemap()
+      .size([width, height])
+      .padding(1);
+
+    treemapLayout(root);
+
+    let svg = d3.select(containerId).select("svg");
+
+    if (svg.empty()) {
+      svg = d3.select(containerId)
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+    } else {
+      svg.selectAll("*").remove();
+    }
+
+    const nodes = svg.selectAll("g")
+      .data(root.leaves())
+      .enter()
+      .append("g")
+      .attr("transform", d => `translate(${d.x0},${d.y0})`);
+
+    const tooltip = d3.select("#tooltip");
+
+    nodes.append("rect")
+      .attr("width", d => d.x1 - d.x0)
+      .attr("height", d => d.y1 - d.y0)
+      .style("fill", "lightblue")
+      .style("stroke", "black")
+      .on("mouseover", function(event, d) {
+        tooltip.transition().duration(200).style("opacity", 0.9);
+        tooltip.html(`Region: ${d.data.region}<br>Value: ${d.data.value}`)
+          .style("left", (event.pageX + 5) + "px")
+          .style("top", (event.pageY - 28) + "px");
+      })
+      .on("mouseout", function() {
+        tooltip.transition().duration(500).style("opacity", 0);
+      });
+
+    nodes.append("text")
+      .attr("x", 5)
+      .attr("y", 20)
+      .text(d => d.data.region)
+      .attr("font-size", "10px")
+      .attr("fill", "black");
+  }
+
+  d3.select("#treemapYearDropdown").on("change", function() {
+    const selectedYear = d3.select(this).property("value");
+    updateTreemap(selectedYear);
+  });
+
+  const initialYear = years[0];
+  d3.select("#treemapYearDropdown").property("value", initialYear);
+  updateTreemap(initialYear);
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const data = await d3.csv("data/full_data.csv");
+
+  const regions = [...new Set(data.map(d => d.region))].sort();
+
+  const dropdownContainer = d3.select("#dropdowns").append("div").attr("class", "dropdown-container");
+
+  dropdownContainer.append("label").text("Region: ");
+  dropdownContainer.append("select")
     .attr("id", "regionDropdown")
     .selectAll("option")
     .data(regions)
@@ -351,32 +378,31 @@ function updateScatterPlot(containerId, data, region) {
     .append("option")
     .attr("value", d => d)
     .text(d => d);
-    
-    await createScatterPlot("#chart1", data);
-    await createStackedBarChart("#chart2", "data/full_data.csv");
-    await createTreemap("#chart3", "data/full_data.csv");
-    
-    d3.select("#regionDropdown").on("change", function() {
+
+  await createScatterPlot("#chart1", data);
+  await createStackedBarChart("#chart2", "data/full_data.csv");
+  await createTreemap("#chart3", "data/full_data.csv");
+
+  d3.select("#regionDropdown").on("change", function() {
     const selectedRegion = d3.select(this).property("value");
     updateScatterPlot("#chart1", data, selectedRegion);
-    });
-    
-    const sections = document.querySelectorAll(".section");
-    const observer = new IntersectionObserver((entries, observer) => {
+  });
+
+  const sections = document.querySelectorAll(".section");
+  const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
-    if (entry.isIntersecting) {
-    const index = Array.from(sections).indexOf(entry.target);
-    if (index === 1) {
-    // Add any additional behavior if needed for the stacked bar chart section
-    } else if (index === 2) {
-    // Add any additional behavior if needed for the third chart section
-    }
-    }
+      if (entry.isIntersecting) {
+        const index = Array.from(sections).indexOf(entry.target);
+        if (index === 1) {
+          // Add any additional behavior if needed for the stacked bar chart section
+        } else if (index === 2) {
+          // Add any additional behavior if needed for the third chart section
+        }
+      }
     });
-    }, { threshold: 0.5 });
-    
-    sections.forEach(section => {
+  }, { threshold: 0.5 });
+
+  sections.forEach(section => {
     observer.observe(section);
-    });
-    
-    });
+  });
+});
